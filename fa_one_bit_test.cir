@@ -1,0 +1,18 @@
+* FA_ ONE BIT TEST
+
+.include fa_one_bit.mod
+
+xfa1 VSUP GND A B Ci S COUT VSUP GND fa_one_bit
+
+VDD VSUP GND DC 2.5V
+
+VIN1 A GND pulse(2.5 0 0s 50ps 50ps 500ps 1ns)
+VIN2 B GND pulse(2.5 0 0s 50ps 50ps 1ns 2ns)
+VIN3 Ci GND pulse(2.5 0 0s 50ps 50ps 2ns 4ns)
+
+.TRAN 1ps 4ns
+.control
+run
+plot V(S), V(COUT)+4, V(A)+8, V(B)+12, V(Ci)+16 
+.endc
+.end
